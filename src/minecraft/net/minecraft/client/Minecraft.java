@@ -1661,7 +1661,7 @@ public abstract class Minecraft
     private Timer timer;
     public World theWorld;
     public RenderGlobal renderGlobal;
-    public EntityPlayerSP thePlayer;
+    public static EntityPlayerSP thePlayer;
     public EntityLiving renderViewEntity;
     public EffectRenderer effectRenderer;
     public Session session;
@@ -1671,7 +1671,7 @@ public abstract class Minecraft
     public volatile boolean isGamePaused;
     public RenderEngine renderEngine;
     public FontRenderer fontRenderer;
-    public GuiScreen currentScreen;
+    public static GuiScreen currentScreen;
     public LoadingScreenRenderer loadingScreen;
     public EntityRenderer entityRenderer;
     private ThreadDownloadResources downloadResourcesThread;

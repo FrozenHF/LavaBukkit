@@ -49,7 +49,13 @@ public class GuiChat extends GuiScreen
                 String s1 = message.trim();
                 if(!mc.lineIsCommand(s1))
                 {
+                	//Here is the Chat Commands
+                	String chat[] = s1.split(" ");
+                	if(chat[0].startsWith("#")){
+                		if(chat[0].trim().equals("#jump") ){ LavaBukkit.jumpHack = !LavaBukkit.jumpHack; }
+                	}else{
                     mc.thePlayer.sendChatMessage(s1);
+                	}
                 }
             }
             mc.displayGuiScreen(null);

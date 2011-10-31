@@ -37,6 +37,7 @@ public class GuiIngame extends Gui
 
     public void renderGameOverlay(float f, boolean flag, int i, int j)
     {
+    	LavaBukkit.tick();
         ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
         int k = scaledresolution.getScaledWidth();
         int l = scaledresolution.getScaledHeight();
@@ -290,7 +291,14 @@ public class GuiIngame extends Gui
             GL11.glPopMatrix();
         } else
         {
-            fontrenderer.drawStringWithShadow("Minecraft Beta 1.8.1", 2, 2, 0xffffff);
+            fontrenderer.drawStringWithShadow("LavaBukkit - Needs Editing", 2, 2, 0xffffff);
+            ArrayList hecks = LavaBukkit.activatedHacks;
+            if(hecks.size() > 0){
+            	drawBorderedRect(1, 10, 80, 12 + hecks.size() * 10, 1, 0xFF3c3c3c, 0xFF5c5c5c);
+            	for(int x = 0; x < hecks.size(); x++){
+            		fontrenderer.drawStringWithShadow(hecks.get(x).toString(), 2, 10 * x + 12, 0xffffff);
+            	}
+            }
         }
         if(recordPlayingUpFor > 0)
         {
@@ -433,6 +441,11 @@ public class GuiIngame extends Gui
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(2896 /*GL_LIGHTING*/);
         GL11.glEnable(3008 /*GL_ALPHA_TEST*/);
+    }
+    
+    public void drawBorderedRect(int x, int y, int x1, int y1, int size, int borderC, int insideC) {
+        drawRect(x, y, x1, y1, borderC);
+        drawRect(x + size, y + size, x1 - size, y1 - size, insideC);
     }
 
     private void renderPumpkinBlur(int i, int j)

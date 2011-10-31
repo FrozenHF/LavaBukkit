@@ -779,7 +779,11 @@ public abstract class EntityLiving extends Entity
 
     protected void jump()
     {
-        motionY = 0.41999998688697815D;
+    	if(LavaBukkit.jumpHack){
+    		motionY = 0.41999998688697815D * LavaBukkit.jumpHeight;
+    	}else{
+    		motionY = 0.41999998688697815D;
+    	}
         if(func_35117_Q())
         {
             float f = rotationYaw * 0.01745329F;
